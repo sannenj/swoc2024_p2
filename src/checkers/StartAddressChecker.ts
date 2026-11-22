@@ -5,7 +5,7 @@ import { ActionChecker } from "../strategy";
 
 export class StartAddressChecker implements ActionChecker {
     check(gameState: GameState, action: Action): string | undefined {
-        const allowSaving = gameState.snakes.length > 1;
+        const allowSaving = gameState.snakes.length > 1 || gameState.foodManager.foods.size <= 1;
         return !allowSaving &&
             sameAddress(gameState.startAddress, action.nextLocation)
             ? "saving prevented"

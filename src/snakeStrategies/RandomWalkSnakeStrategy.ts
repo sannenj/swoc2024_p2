@@ -12,4 +12,5 @@ export class RandomWalkSnakeStrategy extends TargetSnakeStrategy {
         }
         super(gameState, snake, target);
     }
+ 
 }

@@ -18,12 +18,12 @@ export class MainStrategy implements Strategy {
 
     constructor(
         public gameState: GameState,
-        public saveLength: number = 10,
-        public maxNumberOfSavingSnakes: number = 15,
+        public saveLength: number = 8,
+        public maxNumberOfSavingSnakes: number = 25,
         public kamikazeLength: number = 3,
-        public desiredMainSnakes: number = 75,
+        public desiredMainSnakes: number = 20,
         public desiredKamikazeSnakes: number = 4,
-        public foodPerSnake: number = 3,
+        public foodPerSnake: number = 1,
     ) {}
 
     update(): Action[] {
@@ -96,11 +96,7 @@ export class MainStrategy implements Strategy {
         const snakeNames : string[] = this.gameState.snakes.map((snake) => snake.name)
         this.snakeStrategies.forEach((strategy,key,map) => {
             if (!snakeNames.includes(key)) {
-                if (strategy instanceof SaveSnakeStrategy) {
-                    console.log(
-                        `saved snake: ${key}`
-                    );
-                    this.gameState.savedSnake();
+                if (strategy.save()) {
                     this.nr_of_saving_snakes--
                 }
 

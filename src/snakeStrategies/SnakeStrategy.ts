@@ -13,6 +13,9 @@ export interface SnakeStrategy {
      */
     isDone(): string | undefined;
 
+
+    save() : Boolean;
+
     /**
      * Create human-readable representation of current state.
      */

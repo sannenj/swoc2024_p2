@@ -5,7 +5,7 @@ import * as grpc from "@grpc/grpc-js";
 import { writeFile } from "fs/promises";
 import { GameState } from "./GameState";
 import { RpcClient } from "./RpcClient";
-import { Action, ActionType } from "./action";
+import { ActionType } from "./action";
 import { ExistingCellsCollisionChecker } from "./checkers/ExistingCellsCollisionChecker";
 import { NextActionCollisionActionsChecker } from "./checkers/NextActionCollisionActionsChecker";
 import { StartAddressChecker } from "./checkers/StartAddressChecker";
@@ -128,9 +128,9 @@ async function main() {
             switch (action.type) {
                 case ActionType.Move:
                     {
-                        gameState
-                            .getSnake(action.snakeName)
-                            ?.log(`move`, action.nextLocation);
+                        //gameState
+                        //    .getSnake(action.snakeName)
+                        //    ?.log(`move`, action.nextLocation);
                         await myClient.moveSnake(action);
                     }
                     break;
@@ -148,12 +148,12 @@ async function main() {
         }
 
         // Send special 'player is done' move
-        const action : Action = {
-            type: ActionType.Move,
-            snakeName: "",
-            nextLocation: []
-        };
-        await myClient.moveSnake(action);
+        // const action : Action = {
+        //     type: ActionType.Move,
+        //     snakeName: "",
+        //     nextLocation: []
+        // };
+        // await myClient.moveSnake(action);
 
         const snakesWithMoves = new Set(
             filteredActions

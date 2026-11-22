@@ -51,4 +51,8 @@ export class TargetSnakeStrategy implements SnakeStrategy {
     inspect(): string {
         return `[${this.constructor.name} target=${toFlat(this.target)} targetPlayer=${this.gameState.getCell(this.target).player}]`;
     }
+
+    save() : Boolean {
+        return false;
+    }
 }
